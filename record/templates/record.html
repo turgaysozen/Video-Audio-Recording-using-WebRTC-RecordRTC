@@ -1,0 +1,67 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Recording | RecordRTC</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+
+    <script src="{% static 'Logic.js' %}"></script>
+    <script src="{% static 'RecordRTC.js' %}"></script>
+    <script src="{% static 'AudioVideoRecord.js' %}"></script>
+    <footer style="margin-top: 20px;"><small id="send-message"></small></footer>
+    <script src="https://www.webrtc-experiment.com/common.js"></script>
+</head>
+
+<body style="background-color: rgb(245, 245, 245);">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+    <div class="container">
+        <div class="col-md-12">
+            <h3>Beehob Video-Audio Recording using WebRTC-RecordRTC</h3>
+            <br>
+            <div class="col-md-2">
+                <select class="form-control" onchange="RecordType()" id="record_type">
+                    <option selected>--Select Record Type--</option>
+                    <option value="audio">Audio</option>
+                    <option value="video">Video</option>
+                </select>
+            </div>
+            <hr>
+            <div id="record_buttons">
+                <button class="btn btn-success" id="btn-start-recording">Start Recording</button>
+                <button class="btn btn-danger" id="btn-stop-recording" disabled>Stop Recording</button>
+                <button class="btn btn-info" id="post">POST</button>
+                <button id="uploading" class="btn btn-primary" type="button" disabled>
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    <span class="sr-only">Loading...</span>
+                </button>
+            </div>
+            <hr>
+            <div id="remaining_time_aud" style="font-size: 20px; font-weight: bold;" class="text-danger">Remainin Time:
+                <span id="time_aud">05:00</span> minutes!</div>
+            <div id="remaining_time_vid" style="font-size: 20px; font-weight: bold;" class="text-danger">Remainin Time:
+                <span id="time_vid">05:00</span> minutes!</div>
+            <br>
+            <div id="video_div">
+                <video height="400px" width="100%" controls autoplay playsinline></video>
+            </div>
+            <div id="audio_div">
+                <audio controls autoplay playsinline></audio>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
