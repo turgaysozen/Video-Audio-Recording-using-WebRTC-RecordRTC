@@ -1,3 +1,7 @@
+/*
+TODO: needs refactoring
+*/
+
 // hide some divs and buttons when document ready
 $(document).ready(function () {
     $("#video_div").hide();
@@ -58,27 +62,6 @@ function RecordType() {
         xhr.send(formData);
     }
 
-    // calculate duration
-    function calculateTimeDuration(secs) {
-        var hr = Math.floor(secs / 3600);
-        var min = Math.floor((secs - (hr * 3600)) / 60);
-        var sec = Math.floor(secs - (hr * 3600) - (min * 60));
-
-        if (min < 10) {
-            min = "0" + min;
-        }
-
-        if (sec < 10) {
-            sec = "0" + sec;
-        }
-
-        if (hr <= 0) {
-            return min + ':' + sec;
-        }
-
-        return hr + ':' + min + ':' + sec;
-    }
-
     if (selectedValue === 'audio') {
         $("#audio_div").show();
         $("#record_buttons").show();
@@ -98,6 +81,7 @@ function RecordType() {
         }
         var recorderAudio;
         var dateStarted;
+        var duration;
 
         function stopRecordingCallback() {
             audio.srcObject = null;
@@ -135,8 +119,6 @@ function RecordType() {
                 document.getElementById('btn-stop-recording').disabled = false;
             });
         };
-
-        var duration;
 
         document.getElementById('btn-stop-recording').onclick = function () {
             this.disabled = true;
@@ -182,7 +164,6 @@ function RecordType() {
         }
 
     } else {
-
         $("#video_div").show();
         $("#record_buttons").show();
         $("#audio_div").hide();

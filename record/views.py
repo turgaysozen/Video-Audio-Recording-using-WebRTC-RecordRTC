@@ -5,6 +5,8 @@ from datetime import datetime
 import os
 from django.http import JsonResponse
 from .models import Recording
+import subprocess
+
 
 def upload(request):
     if request.method == 'POST':
@@ -14,7 +16,7 @@ def upload(request):
             path = os.path.join(baseDir, "recordings")
             filename = str(uuid.uuid1())# + "-" + datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
             record_type = request.META['HTTP_TYPE']
-            extension = ".ogg" if record_type == "audio" else ".webm"
+            extension = ".mp3" if record_type == "audio" else ".webm"
 
             # create new folder if not exist which name is recordings
             if not os.path.exists(path):
